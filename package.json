@@ -30,6 +30,10 @@
     "nuxt": "^2.8.1"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.2",
+    "eslint": "^6.1.0",
+    "eslint-config-google": "^0.13.0",
+    "eslint-plugin-vue": "^5.2.3",
     "push-dir": "^0.4.1"
   }
 }

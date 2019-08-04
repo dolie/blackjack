@@ -54,7 +54,11 @@ module.exports = {
       'baseIndent' : 1,
       'switchCase' : 1
     }],
-    'quote-props'     : [2,'consistent']
+    "vue/html-closing-bracket-newline": ["error", {
+      "singleline": "never",
+      "multiline": "never"
+    }],
+    'quote-props'     : [2,'consistent'],
   },
   overrides     : [
     {

@@ -1,297 +1,299 @@
-const R = 'R'; // Rester
-const T = 'T'; // Tirer
-const D = 'D'; // Doubler
-const P = 'P'; // Partager
+import { actions } from '~/constants/actions.fr';
+
+const R = actions.STAY; // Rester
+const T = actions.HIT; // Tirer
+const D = actions.DOUBLE; // Doubler
+const P = actions.SPLIT; // Partager
 
 export const tot = [
   {
     'values' : [17, 18, 19, 20, 21],
-    'dealer' : {
-      2  : T,
-      3  : R,
-      4  : R,
-      5  : R,
-      6  : R,
-      7  : R,
-      8  : R,
-      9  : R,
-      10 : R,
-      11 : R
-    }
+    'dealer' : [
+      { 'value' : 2, 'action' : T },
+      { 'value' : 3, 'action' : R },
+      { 'value' : 4, 'action' : R },
+      { 'value' : 5, 'action' : R },
+      { 'value' : 6, 'action' : R },
+      { 'value' : 7, 'action' : R },
+      { 'value' : 8, 'action' : R },
+      { 'value' : 9, 'action' : R },
+      { 'value' : 10, 'action' : R },
+      { 'value' : 11, 'action' : R }
+    ]
   }, {
     'values' : [13, 14, 15, 16],
-    'dealer' : {
-      2  : R,
-      3  : R,
-      4  : R,
-      5  : R,
-      6  : R,
-      7  : T,
-      8  : T,
-      9  : T,
-      10 : T,
-      11 : T
-    }
+    'dealer' : [
+      { 'value' : 2, 'action' : R },
+      { 'value' : 3, 'action' : R },
+      { 'value' : 4, 'action' : R },
+      { 'value' : 5, 'action' : R },
+      { 'value' : 6, 'action' : R },
+      { 'value' : 7, 'action' : T },
+      { 'value' : 8, 'action' : T },
+      { 'value' : 9, 'action' : T },
+      { 'value' : 10, 'action' : T },
+      { 'value' : 11, 'action' : T }
+    ]
   }, {
     'values' : [12],
-    'dealer' : {
-      2  : T,
-      3  : T,
-      4  : R,
-      5  : R,
-      6  : R,
-      7  : T,
-      8  : T,
-      9  : T,
-      10 : T,
-      11 : T
-    }
+    'dealer' : [
+      { 'value' : 2, 'action' : T },
+      { 'value' : 3, 'action' : T },
+      { 'value' : 4, 'action' : R },
+      { 'value' : 5, 'action' : R },
+      { 'value' : 6, 'action' : R },
+      { 'value' : 7, 'action' : T },
+      { 'value' : 8, 'action' : T },
+      { 'value' : 9, 'action' : T },
+      { 'value' : 10, 'action' : T },
+      { 'value' : 11, 'action' : T }
+    ]
   }, {
     'values' : [10, 11],
-    'dealer' : {
-      2  : D,
-      3  : D,
-      4  : D,
-      5  : D,
-      6  : D,
-      7  : D,
-      8  : D,
-      9  : D,
-      10 : T,
-      11 : T
-    }
+    'dealer' : [
+      { 'value' : 2, 'action' : D },
+      { 'value' : 3, 'action' : D },
+      { 'value' : 4, 'action' : D },
+      { 'value' : 5, 'action' : D },
+      { 'value' : 6, 'action' : D },
+      { 'value' : 7, 'action' : D },
+      { 'value' : 8, 'action' : D },
+      { 'value' : 9, 'action' : D },
+      { 'value' : 10, 'action' : T },
+      { 'value' : 11, 'action' : T }
+    ]
   }, {
     'values' : [9],
-    'dealer' : {
-      2  : T,
-      3  : D,
-      4  : D,
-      5  : D,
-      6  : D,
-      7  : T,
-      8  : T,
-      9  : T,
-      10 : T,
-      11 : T
-    }
+    'dealer' : [
+      { 'value' : 2, 'action' : T },
+      { 'value' : 3, 'action' : D },
+      { 'value' : 4, 'action' : D },
+      { 'value' : 5, 'action' : D },
+      { 'value' : 6, 'action' : D },
+      { 'value' : 7, 'action' : T },
+      { 'value' : 8, 'action' : T },
+      { 'value' : 9, 'action' : T },
+      { 'value' : 10, 'action' : T },
+      { 'value' : 11, 'action' : T }
+    ]
   }, {
     'values' : [5, 6, 7, 8],
-    'dealer' : {
-      2  : T,
-      3  : T,
-      4  : T,
-      5  : T,
-      6  : T,
-      7  : T,
-      8  : T,
-      9  : T,
-      10 : T,
-      11 : T
-    }
+    'dealer' : [
+      { 'value' : 2, 'action' : T },
+      { 'value' : 3, 'action' : T },
+      { 'value' : 4, 'action' : T },
+      { 'value' : 5, 'action' : T },
+      { 'value' : 6, 'action' : T },
+      { 'value' : 7, 'action' : T },
+      { 'value' : 8, 'action' : T },
+      { 'value' : 9, 'action' : T },
+      { 'value' : 10, 'action' : T },
+      { 'value' : 11, 'action' : T }
+    ]
   }
 ];
 
 export const pairs = [
   {
     'values' : [11],
-    'dealer' : {
-      2  : P,
-      3  : P,
-      4  : P,
-      5  : P,
-      6  : P,
-      7  : P,
-      8  : P,
-      9  : P,
-      10 : P,
-      11 : T
-    }
+    'dealer' : [
+      { 'value' : 2, 'action' : P },
+      { 'value' : 3, 'action' : P },
+      { 'value' : 4, 'action' : P },
+      { 'value' : 5, 'action' : P },
+      { 'value' : 6, 'action' : P },
+      { 'value' : 7, 'action' : P },
+      { 'value' : 8, 'action' : P },
+      { 'value' : 9, 'action' : P },
+      { 'value' : 10, 'action' : P },
+      { 'value' : 11, 'action' : T }
+    ]
   }, {
     'values' : [10],
-    'dealer' : {
-      2  : R,
-      3  : R,
-      4  : R,
-      5  : R,
-      6  : R,
-      7  : R,
-      8  : R,
-      9  : R,
-      10 : R,
-      11 : R
-    }
+    'dealer' : [
+      { 'value' : 2, 'action' : R },
+      { 'value' : 3, 'action' : R },
+      { 'value' : 4, 'action' : R },
+      { 'value' : 5, 'action' : R },
+      { 'value' : 6, 'action' : R },
+      { 'value' : 7, 'action' : R },
+      { 'value' : 8, 'action' : R },
+      { 'value' : 9, 'action' : R },
+      { 'value' : 10, 'action' : R },
+      { 'value' : 11, 'action' : R }
+    ]
   }, {
     'values' : [9],
-    'dealer' : {
-      2  : P,
-      3  : P,
-      4  : P,
-      5  : P,
-      6  : P,
-      7  : R,
-      8  : P,
-      9  : P,
-      10 : R,
-      11 : R
-    }
+    'dealer' : [
+      { 'value' : 2, 'action' : P },
+      { 'value' : 3, 'action' : P },
+      { 'value' : 4, 'action' : P },
+      { 'value' : 5, 'action' : P },
+      { 'value' : 6, 'action' : P },
+      { 'value' : 7, 'action' : R },
+      { 'value' : 8, 'action' : P },
+      { 'value' : 9, 'action' : P },
+      { 'value' : 10, 'action' : R },
+      { 'value' : 11, 'action' : R }
+    ]
   }, {
     'values' : [8],
-    'dealer' : {
-      2  : P,
-      3  : P,
-      4  : P,
-      5  : P,
-      6  : P,
-      7  : P,
-      8  : P,
-      9  : P,
-      10 : T,
-      11 : T
-    }
+    'dealer' : [
+      { 'value' : 2, 'action' : P },
+      { 'value' : 3, 'action' : P },
+      { 'value' : 4, 'action' : P },
+      { 'value' : 5, 'action' : P },
+      { 'value' : 6, 'action' : P },
+      { 'value' : 7, 'action' : P },
+      { 'value' : 8, 'action' : P },
+      { 'value' : 9, 'action' : P },
+      { 'value' : 10, 'action' : T },
+      { 'value' : 11, 'action' : T }
+    ]
   }, {
     'values' : [7],
-    'dealer' : {
-      2  : P,
-      3  : P,
-      4  : P,
-      5  : P,
-      6  : P,
-      7  : P,
-      8  : T,
-      9  : T,
-      10 : T,
-      11 : T
-    }
+    'dealer' : [
+      { 'value' : 2, 'action' : P },
+      { 'value' : 3, 'action' : P },
+      { 'value' : 4, 'action' : P },
+      { 'value' : 5, 'action' : P },
+      { 'value' : 6, 'action' : P },
+      { 'value' : 7, 'action' : P },
+      { 'value' : 8, 'action' : T },
+      { 'value' : 9, 'action' : T },
+      { 'value' : 10, 'action' : T },
+      { 'value' : 11, 'action' : T }
+    ]
   }, {
     'values' : [6],
-    'dealer' : {
-      2  : P,
-      3  : P,
-      4  : P,
-      5  : P,
-      6  : P,
-      7  : T,
-      8  : T,
-      9  : T,
-      10 : T,
-      11 : T
-    }
+    'dealer' : [
+      { 'value' : 2, 'action' : P },
+      { 'value' : 3, 'action' : P },
+      { 'value' : 4, 'action' : P },
+      { 'value' : 5, 'action' : P },
+      { 'value' : 6, 'action' : P },
+      { 'value' : 7, 'action' : T },
+      { 'value' : 8, 'action' : T },
+      { 'value' : 9, 'action' : T },
+      { 'value' : 10, 'action' : T },
+      { 'value' : 11, 'action' : T }
+    ]
   }, {
     'values' : [5],
-    'dealer' : {
-      2  : D,
-      3  : D,
-      4  : D,
-      5  : D,
-      6  : D,
-      7  : D,
-      8  : D,
-      9  : D,
-      10 : T,
-      11 : T
-    }
+    'dealer' : [
+      { 'value' : 2, 'action' : D },
+      { 'value' : 3, 'action' : D },
+      { 'value' : 4, 'action' : D },
+      { 'value' : 5, 'action' : D },
+      { 'value' : 6, 'action' : D },
+      { 'value' : 7, 'action' : D },
+      { 'value' : 8, 'action' : D },
+      { 'value' : 9, 'action' : D },
+      { 'value' : 10, 'action' : T },
+      { 'value' : 11, 'action' : T }
+    ]
   }, {
     'values' : [4],
-    'dealer' : {
-      2  : T,
-      3  : T,
-      4  : T,
-      5  : P,
-      6  : P,
-      7  : T,
-      8  : T,
-      9  : T,
-      10 : T,
-      11 : T
-    }
+    'dealer' : [
+      { 'value' : 2, 'action' : T },
+      { 'value' : 3, 'action' : T },
+      { 'value' : 4, 'action' : T },
+      { 'value' : 5, 'action' : P },
+      { 'value' : 6, 'action' : P },
+      { 'value' : 7, 'action' : T },
+      { 'value' : 8, 'action' : T },
+      { 'value' : 9, 'action' : T },
+      { 'value' : 10, 'action' : T },
+      { 'value' : 11, 'action' : T }
+    ]
   }, {
     'values' : [3, 2],
-    'dealer' : {
-      2  : P,
-      3  : P,
-      4  : P,
-      5  : P,
-      6  : P,
-      7  : P,
-      8  : T,
-      9  : T,
-      10 : T,
-      11 : T
-    }
+    'dealer' : [
+      { 'value' : 2, 'action' : P },
+      { 'value' : 3, 'action' : P },
+      { 'value' : 4, 'action' : P },
+      { 'value' : 5, 'action' : P },
+      { 'value' : 6, 'action' : P },
+      { 'value' : 7, 'action' : P },
+      { 'value' : 8, 'action' : T },
+      { 'value' : 9, 'action' : T },
+      { 'value' : 10, 'action' : T },
+      { 'value' : 11, 'action' : T }
+    ]
   }
 ];
 
 export const aces = [
   {
     'values' : [8, 9, 10],
-    'dealer' : {
-      2  : R,
-      3  : R,
-      4  : R,
-      5  : R,
-      6  : R,
-      7  : R,
-      8  : R,
-      9  : R,
-      10 : R,
-      11 : R
-    }
+    'dealer' : [
+      { 'value' : 2, 'action' : R },
+      { 'value' : 3, 'action' : R },
+      { 'value' : 4, 'action' : R },
+      { 'value' : 5, 'action' : R },
+      { 'value' : 6, 'action' : R },
+      { 'value' : 7, 'action' : R },
+      { 'value' : 8, 'action' : R },
+      { 'value' : 9, 'action' : R },
+      { 'value' : 10, 'action' : R },
+      { 'value' : 11, 'action' : R }
+    ]
   }, {
     'values' : [7],
-    'dealer' : {
-      2  : R,
-      3  : D,
-      4  : D,
-      5  : D,
-      6  : D,
-      7  : R,
-      8  : R,
-      9  : T,
-      10 : T,
-      11 : T
-    }
+    'dealer' : [
+      { 'value' : 2, 'action' : R },
+      { 'value' : 3, 'action' : D },
+      { 'value' : 4, 'action' : D },
+      { 'value' : 5, 'action' : D },
+      { 'value' : 6, 'action' : D },
+      { 'value' : 7, 'action' : R },
+      { 'value' : 8, 'action' : R },
+      { 'value' : 9, 'action' : T },
+      { 'value' : 10, 'action' : T },
+      { 'value' : 11, 'action' : T }
+    ]
   }, {
     'values' : [6],
-    'dealer' : {
-      2  : T,
-      3  : D,
-      4  : D,
-      5  : D,
-      6  : D,
-      7  : T,
-      8  : T,
-      9  : T,
-      10 : T,
-      11 : T
-    }
+    'dealer' : [
+      { 'value' : 2, 'action' : T },
+      { 'value' : 3, 'action' : D },
+      { 'value' : 4, 'action' : D },
+      { 'value' : 5, 'action' : D },
+      { 'value' : 6, 'action' : D },
+      { 'value' : 7, 'action' : T },
+      { 'value' : 8, 'action' : T },
+      { 'value' : 9, 'action' : T },
+      { 'value' : 10, 'action' : T },
+      { 'value' : 11, 'action' : T }
+    ]
   }, {
     'values' : [4, 5],
-    'dealer' : {
-      2  : T,
-      3  : T,
-      4  : D,
-      5  : D,
-      6  : D,
-      7  : T,
-      8  : T,
-      9  : T,
-      10 : T,
-      11 : T
-    }
+    'dealer' : [
+      { 'value' : 2, 'action' : T },
+      { 'value' : 3, 'action' : T },
+      { 'value' : 4, 'action' : D },
+      { 'value' : 5, 'action' : D },
+      { 'value' : 6, 'action' : D },
+      { 'value' : 7, 'action' : T },
+      { 'value' : 8, 'action' : T },
+      { 'value' : 9, 'action' : T },
+      { 'value' : 10, 'action' : T },
+      { 'value' : 11, 'action' : T }
+    ]
   }, {
     'values' : [2, 3],
-    'dealer' : {
-      2  : T,
-      3  : T,
-      4  : T,
-      5  : D,
-      6  : D,
-      7  : T,
-      8  : T,
-      9  : T,
-      10 : T,
-      11 : T
-    }
+    'dealer' : [
+      { 'value' : 2, 'action' : T },
+      { 'value' : 3, 'action' : T },
+      { 'value' : 4, 'action' : T },
+      { 'value' : 5, 'action' : D },
+      { 'value' : 6, 'action' : D },
+      { 'value' : 7, 'action' : T },
+      { 'value' : 8, 'action' : T },
+      { 'value' : 9, 'action' : T },
+      { 'value' : 10, 'action' : T },
+      { 'value' : 11, 'action' : T }
+    ]
   }
 ]
 ;

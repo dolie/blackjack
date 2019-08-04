@@ -1,0 +1,17 @@
+* {
+  box-sizing : border-box;
+}
+
+html, body {
+  margin     : 0;
+  padding    : 0;
+  height     : 100%;
+}
+
+$split: #ffeaa7;
+$double: #74b9ff;
+$hit: #55efc4;
+$stay: #ff7675;
+
+$error: #d63031;
+$correct: #00b894;

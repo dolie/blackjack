@@ -156,16 +156,15 @@
 @import '~/assets/css/main.scss';
 
 .app {
+  display         : flex;
+  flex-direction  : column;
+  justify-content : center;
   width           : 100%;
   max-width       : 600px;
   height          : 100vh;
   margin          : auto;
-  display         : flex;
-  flex-direction  : column;
-  justify-content : center;
-
-  text-align : center;
-  border     : 3px transparent solid;
+  text-align      : center;
+  border          : 3px transparent solid;
 
   &--error {
     border : 10px solid $error;
@@ -189,29 +188,29 @@
   }
 
   &__action {
-    border        : 0;
     width         : 100px;
     height        : 100px;
-    padding       : 10px;
-    border-radius : 50%;
     margin        : 15px;
+    padding       : 10px;
     font-size     : 1.2rem;
+    border        : 0;
+    border-radius : 50%;
     user-select   : none;
 
     &--split {
-      background-color : $split
+      background-color : $split;
     }
 
     &--hit {
-      background-color : $hit
+      background-color : $hit;
     }
 
     &--double {
-      background-color : $double
+      background-color : $double;
     }
 
     &--stay {
-      background-color : $stay
+      background-color : $stay;
     }
   }
 }

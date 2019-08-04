@@ -1,0 +1,35 @@
+# temporary local files
+tmp
+*.log
+scripts/*.csv
+coverage
+/.cache/
+.gitattributes
+
+# dependencies
+node_modules
+
+# logs
+npm-debug.log
+
+# dist
+.nuxt
+dist
+*.tar.gz
+*.zip
+
+# IDE
+.idea
+.vscode/*
+
+# system
+.DS_Store
+
+# default
+!.gitkeep
+
+# fonts
+*.ttf     -text diff
+*.eot     -text diff
+*.woff    -text diff
+*.woff2   -text diff

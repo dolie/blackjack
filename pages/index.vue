@@ -1,7 +1,7 @@
 <template>
   <div
-    :class="answer === null || `app--${answer ? 'correct' : 'error'}`"
-    class="app">
+    class="app"
+    :class="answer === null || `app--${answer ? 'correct' : 'error'}`">
     <h1>Blackjack Basic Strategy learning app</h1>
 
     <p>
@@ -22,9 +22,11 @@
       <button
         v-for="(action, index) in Object.keys(actions)"
         :key="index"
-        class="app__action"
+        type="button"
         :class="`app__action--${action.toLowerCase()}`"
+        class="app__action"
         @mousedown="verify(action)"
+        @touchstart="verify(action)"
         @click="draw">
         {{ actions[action] }}
       </button>
@@ -120,12 +122,14 @@
   }
 
   &__action {
-    border : 0;
-    width : 100px;
-    height: 100px;
-    padding : 10px;
+    border        : 0;
+    width         : 100px;
+    height        : 100px;
+    padding       : 10px;
     border-radius : 50%;
-    margin : 15px;
+    margin        : 15px;
+    font-size     : 1.2rem;
+    user-select   : none;
 
     &--split {
       background-color : $split

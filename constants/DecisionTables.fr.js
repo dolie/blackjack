@@ -1,4 +1,4 @@
-import { actions } from '~/constants/actions.fr';
+import { actions } from '~/constants/Actions.fr';
 
 const R = actions.STAY; // Rester
 const T = actions.HIT; // Tirer

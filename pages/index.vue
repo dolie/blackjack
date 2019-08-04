@@ -2,15 +2,26 @@
   <div
     class="app"
     :class="answer === null || `app--${answer ? 'correct' : 'error'}`">
-    <h1>Blackjack Basic Strategy learning app</h1>
+    <h1 class="app__title">
+      Blackjack Basic Strategy learning app
+    </h1>
 
     <p>
-      Carte du Croupier : {{ dealerCard.value }}
+      Carte du Croupier
+      <br>
+      {{ dealerCard.value }}
     </p>
 
     <p>
-      Vos cartes : {{ playerCards }}
+      <span
+        v-for="(card, index) in playerCards"
+        :key="index">
+        {{ card }}
+      </span>
+      <br>
+      Vos cartes
     </p>
+
 
     <p
       class="app__response"
@@ -36,7 +47,8 @@
 
 <script>
   import { tot, pairs, aces } from '~/constants/DecisionTables.fr.js';
-  import { actions } from '~/constants/actions.fr.js';
+  import { actions } from '~/constants/Actions.fr.js';
+  import { totCards } from '~/constants/TotCards.js';
 
   export default {
     data() {
@@ -44,8 +56,10 @@
         tot,
         pairs,
         aces,
+        tables       : [],
         actions,
-        playerCards  : 3,
+        cards        : 0,
+        playerCards  : [],
         dealerCard   : 2,
         answer       : null,
         hideResponse : true
@@ -53,15 +67,22 @@
     },
 
     created() {
+      this.tables = [tot, pairs, aces];
       this.draw();
     },
 
     methods : {
       draw() {
-        const cardGroup = this.getRandomInt(this.tot.length);
+        const n         = this.getRandomInt(this.tables.length);
+        const table     = this.tables[n];
+        const cardGroup = this.getRandomInt(table.length);
 
-        this.playerCards  = this.pick(this.tot[cardGroup].values);
-        this.dealerCard   = this.pick(this.tot[cardGroup].dealer);
+        this.cards       = this.pick(table[cardGroup].values);
+
+        this.generateCards(this.cards, n);
+
+        this.dealerCard  = this.pick(table[cardGroup].dealer);
+
         this.hideResponse = true;
         this.answer       = null;
       },
@@ -85,6 +106,47 @@
         const n = this.getRandomInt(array.length);
 
         return array[n];
+      },
+
+      generateCards(cards, table) {
+        this.playerCards = [];
+
+        switch (table) {
+          case 0:
+            this.generateCardsTot(cards);
+            break;
+          case 1:
+            this.generateCardsPairs(cards);
+            break;
+          case 2:
+            this.generateCardsAces(cards);
+            break;
+          default:
+            break;
+        }
+
+        if (Math.random() >= .5) {
+          this.playerCards.reverse();
+        }
+      },
+
+      generateCardsTot(cards) {
+        const nbPossibilities = totCards[cards].length;
+        const possibilities   = totCards[cards];
+
+        const n = this.getRandomInt(nbPossibilities);
+
+        this.playerCards = possibilities[n];
+      },
+
+      generateCardsPairs(cards) {
+        this.playerCards.push(cards);
+        this.playerCards.push(cards);
+      },
+
+      generateCardsAces(cards) {
+        this.playerCards.push(11);
+        this.playerCards.push(cards);
       }
     }
   };
@@ -111,6 +173,11 @@
 
   &--correct {
     border : 10px solid $correct;
+  }
+
+  &__title {
+    margin    : 0 20px;
+    font-size : 1.8rem;
   }
 
   &__response {

@@ -6,22 +6,29 @@
       Blackjack Basic Strategy learning app
     </h1>
 
-    <p>
-      Carte du Croupier
-      <br>
-      {{ dealerCard.value }}
-    </p>
+    <no-ssr>
+      <div class="app__playmat">
+        <p>
+          Carte du Croupier
+        </p>
 
-    <p>
-      <span
-        v-for="(card, index) in playerCards"
-        :key="index">
-        {{ card }}
-      </span>
-      <br>
-      Vos cartes
-    </p>
+        <svg-icon
+          class="app__card app__card--dealer"
+          :name="dealerSvgCard" />
 
+        <div class="app__cards">
+          <svg-icon
+            v-for="(card, index) in playerSvgCards"
+            :key="index"
+            class="app__card app__card--player"
+            :name="card" />
+        </div>
+
+        <p>
+          Vos cartes
+        </p>
+      </div>
+    </no-ssr>
 
     <p
       class="app__response"
@@ -47,6 +54,8 @@
 
 <script>
   import { tot, pairs, aces } from '~/constants/DecisionTables.fr.js';
+  import { colors } from '~/constants/Colors.js';
+  import { faces } from '~/constants/Faces.js';
   import { actions } from '~/constants/Actions.fr.js';
   import { totCards } from '~/constants/TotCards.js';
 
@@ -60,10 +69,26 @@
         actions,
         cards        : 0,
         playerCards  : [],
-        dealerCard   : 2,
+        dealerCard   : {},
         answer       : null,
         hideResponse : true
       };
+    },
+
+    computed : {
+      dealerSvgCard() {
+        const val = this.dealerCard.value.toString().replace('11', 'A').replace('10', this.pickFace());
+
+        return `Cards-${val}-${this.pickColor()}`;
+      },
+
+      playerSvgCards() {
+        return this.playerCards.map((card) => {
+          const val = card.toString().replace('11', 'A').replace('10', this.pickFace());
+
+          return `Cards-${val}-${this.pickColor()}`;
+        });
+      }
     },
 
     created() {
@@ -77,11 +102,11 @@
         const table     = this.tables[n];
         const cardGroup = this.getRandomInt(table.length);
 
-        this.cards       = this.pick(table[cardGroup].values);
+        this.cards = this.pick(table[cardGroup].values);
 
         this.generateCards(this.cards, n);
 
-        this.dealerCard  = this.pick(table[cardGroup].dealer);
+        this.dealerCard = this.pick(table[cardGroup].dealer);
 
         this.hideResponse = true;
         this.answer       = null;
@@ -147,6 +172,14 @@
       generateCardsAces(cards) {
         this.playerCards.push(11);
         this.playerCards.push(cards);
+      },
+
+      pickColor() {
+        return colors[this.getRandomInt(colors.length)];
+      },
+
+      pickFace() {
+        return faces[this.getRandomInt(faces.length)];
       }
     }
   };
@@ -177,6 +210,34 @@
   &__title {
     margin    : 0 20px;
     font-size : 1.8rem;
+  }
+
+  &__playmat {
+    display        : flex;
+    flex-direction : column;
+    align-items    : center;
+
+    & > * {
+      margin : 20px 0;
+    }
+  }
+
+  &__cards {
+    display         : flex;
+    justify-content : space-evenly;
+  }
+
+  &__card {
+    width            : 75px;
+    height           : 100px;
+    margin           : 5px;
+    background-color : #eee;
+    border           : 1px solid #aaa;
+    border-radius    : 5px;
+
+    &--dealer {
+      margin : 20px 0;
+    }
   }
 
   &__response {

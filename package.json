@@ -8,7 +8,8 @@
     "dev": "nuxt",
     "build:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt build",
     "generate:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt generate",
-    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
+    "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup",
+    "icons": "vsvg -s assets/cards -t components/cards"
   },
   "repository": {
     "type": "git",
@@ -31,6 +32,7 @@
     "nuxt": "^2.8.1"
   },
   "devDependencies": {
+    "@nuxtjs/svg-sprite": "^0.2.1",
     "babel-eslint": "^10.0.2",
     "eslint": "^6.1.0",
     "eslint-config-google": "^0.13.0",

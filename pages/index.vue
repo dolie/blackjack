@@ -2,10 +2,6 @@
   <div
     class="app"
     :class="answer === null || `app--${answer ? 'correct' : 'error'}`">
-    <h1 class="app__title">
-      Blackjack Basic Strategy learning app
-    </h1>
-
     <no-ssr>
       <div class="app__playmat">
         <p>
@@ -197,14 +193,14 @@
   height          : 100vh;
   margin          : auto;
   text-align      : center;
-  border          : 3px transparent solid;
+  border          : $border-width transparent solid;
 
   &--error {
-    border : 10px solid $error;
+    border : $border-width solid $error;
   }
 
   &--correct {
-    border : 10px solid $correct;
+    border : $border-width solid $correct;
   }
 
   &__title {
@@ -249,11 +245,12 @@
   }
 
   &__action {
-    width         : 100px;
-    height        : 100px;
-    margin        : 15px;
-    padding       : 10px;
-    font-size     : 1.2rem;
+    width         : 75px;
+    height        : 75px;
+    margin        : 5px;
+    padding       : 0;
+    font-size     : 1rem;
+    text-align    : center;
     border        : 0;
     border-radius : 50%;
     user-select   : none;

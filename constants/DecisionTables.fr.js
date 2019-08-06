@@ -9,7 +9,7 @@ export const tot = [
   {
     'values' : [17, 18, 19, 20, 21],
     'dealer' : [
-      { 'value' : 2, 'action' : T },
+      { 'value' : 2, 'action' : R },
       { 'value' : 3, 'action' : R },
       { 'value' : 4, 'action' : R },
       { 'value' : 5, 'action' : R },

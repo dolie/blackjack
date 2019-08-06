@@ -2,7 +2,6 @@
   <!-- eslint-disable -->
     <component
       :is="icon"
-      :id="id"
       class="icon"
       viewBox="0 0 740 1050">
     </component>
@@ -126,10 +125,6 @@
     props : {
       icon : {
         type     : String,
-        required : true
-      },
-      id : {
-        type     : Number,
         required : true
       }
     }

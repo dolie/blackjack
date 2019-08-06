@@ -2,6 +2,16 @@
   <div
     class="app"
     :class="answer === null || `app--${answer ? 'correct' : 'error'}`">
+    <button
+      class="app__button app__button--help"
+      @click="showHelp = !showHelp">
+      ?
+    </button>
+
+    <Help
+      v-show="showHelp"
+      :tables="tables" />
+
     <no-ssr>
       <div class="app__playmat">
         <p class="app__label">
@@ -15,7 +25,6 @@
         <div class="app__cards">
           <Icon
             v-for="(card, index) in playerSvgCards"
-            :id="index"
             :key="index"
             class="app__card app__card--player"
             :icon="card" />
@@ -29,7 +38,7 @@
 
     <p
       class="app__correction"
-      :class="hideResponse || 'app__correction--show'">
+      :class="hideCorrection || 'app__correction--show'">
       Action à prendre : <b>{{ dealerCard.action }}</b>
     </p>
 
@@ -38,8 +47,8 @@
         v-for="(action, index) in Object.keys(actions)"
         :key="index"
         type="button"
-        :class="`app__action--${action.toLowerCase()}`"
-        class="app__action"
+        :class="`app__button--${action.toLowerCase()}`"
+        class="app__button"
         @mousedown="verify(action)"
         @touchstart="verify(action)"
         @click="draw">
@@ -57,10 +66,12 @@
   import { totCards } from '~/constants/TotCards.js';
 
   import Icon from '~/components/Icon';
+  import Help from '~/components/Help';
 
   export default {
     components : {
-      Icon
+      Icon,
+      Help
     },
 
     data() {
@@ -68,13 +79,14 @@
         tot,
         pairs,
         aces,
-        tables       : [],
+        tables         : [],
         actions,
-        cards        : 0,
-        playerCards  : [],
-        dealerCard   : {},
-        answer       : null,
-        hideResponse : true
+        cards          : 0,
+        playerCards    : [],
+        dealerCard     : {},
+        answer         : null,
+        hideCorrection : true,
+        showHelp       : false
       };
     },
 
@@ -111,13 +123,13 @@
 
         this.dealerCard = this.pick(table[cardGroup].dealer);
 
-        this.hideResponse = true;
+        this.hideCorrection = true;
         this.answer       = null;
       },
 
       verify(action) {
         this.answer       = actions[action] === this.dealerCard.action;
-        this.hideResponse = this.answer;
+        this.hideCorrection = this.answer;
       },
 
       getRandomInt(max) {
@@ -248,7 +260,7 @@
     }
   }
 
-  &__action {
+  &__button {
     width         : 75px;
     height        : 75px;
     margin        : 5px;
@@ -257,6 +269,7 @@
     text-align    : center;
     border        : 0;
     border-radius : 50%;
+    box-shadow: inset 2px 2px 2px rgba(255, 255, 255, .2), inset -2px -2px 2px rgba(0, 0, 0, .2);
     user-select   : none;
 
     &--split {
@@ -273,6 +286,20 @@
 
     &--stay {
       background-color : $stay;
+    }
+
+    &--help {
+      align-self       : flex-end;
+      margin-bottom    : 20px;
+      color            : grey;
+      font-size        : 2rem;
+      background-color : white;
+      border           : 3px solid grey;
+    }
+
+    &:hover,
+    &:focus {
+      cursor : pointer;
     }
   }
 }

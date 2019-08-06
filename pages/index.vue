@@ -4,7 +4,7 @@
     :class="answer === null || `app--${answer ? 'correct' : 'error'}`">
     <no-ssr>
       <div class="app__playmat">
-        <p>
+        <p class="app__label">
           Carte du Croupier
         </p>
 
@@ -21,16 +21,16 @@
             :icon="card" />
         </div>
 
-        <p>
+        <p class="app__label">
           Vos cartes
         </p>
       </div>
     </no-ssr>
 
     <p
-      class="app__response"
-      :class="hideResponse || 'app__response--show'">
-      Action à prendre : {{ dealerCard.action }}
+      class="app__correction"
+      :class="hideResponse || 'app__correction--show'">
+      Action à prendre : <b>{{ dealerCard.action }}</b>
     </p>
 
     <div class="app__actions">
@@ -215,19 +215,20 @@
     font-size : 1.8rem;
   }
 
+  &__label {
+    margin : 0;
+  }
+
   &__playmat {
     display        : flex;
     flex-direction : column;
     align-items    : center;
-
-    & > * {
-      margin : 20px 0;
-    }
   }
 
   &__cards {
     display         : flex;
     justify-content : space-evenly;
+    margin-top      : 20px;
   }
 
   &__card {
@@ -237,13 +238,9 @@
     background-color : #eee;
     border           : 1px solid #aaa;
     border-radius    : 5px;
-
-    &--dealer {
-      margin : 20px 0;
-    }
   }
 
-  &__response {
+  &__correction {
     color : transparent;
 
     &--show {

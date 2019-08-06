@@ -8,16 +8,17 @@
           Carte du Croupier
         </p>
 
-        <svg-icon
+        <Icon
           class="app__card app__card--dealer"
-          :name="dealerSvgCard" />
+          :icon="dealerSvgCard" />
 
         <div class="app__cards">
-          <svg-icon
+          <Icon
             v-for="(card, index) in playerSvgCards"
+            :id="index"
             :key="index"
             class="app__card app__card--player"
-            :name="card" />
+            :icon="card" />
         </div>
 
         <p>
@@ -55,7 +56,13 @@
   import { actions } from '~/constants/Actions.fr.js';
   import { totCards } from '~/constants/TotCards.js';
 
+  import Icon from '~/components/Icon';
+
   export default {
+    components : {
+      Icon
+    },
+
     data() {
       return {
         tot,

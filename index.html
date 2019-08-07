@@ -1,0 +1,464 @@
+<!doctype html>
+<html data-n-head-ssr data-n-head="">
+  <head data-n-head="">
+    <title data-n-head="true">Blackjack Basic Strategy</title><meta data-n-head="true" charset="utf-8"><meta data-n-head="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-n-head="true" name="description" content="Application d'apprentissage de la stratégie de base du Blackjack, adaptée pour les casinos français"><link data-n-head="true" rel="icon" type="image/png" href="blackjack.png"><base href="/blackjack/"><link rel="preload" href="/blackjack/_nuxt/3081c55dbbb60853997c.js" as="script"><link rel="preload" href="/blackjack/_nuxt/b2249a4f9045373c5774.js" as="script"><link rel="preload" href="/blackjack/_nuxt/7c4d35a33e5f583ae0a3.js" as="script"><link rel="preload" href="/blackjack/_nuxt/262126b33415c23a097a.js" as="script"><style data-vue-ssr-id="b15e4592:0 17cfdfa9:0 61c0f14e:0 627a6012:0 b076264c:0">*{box-sizing:border-box;font-family:sans-serif}body,html{height:100%;margin:0;padding:0}.nuxt-progress{position:fixed;top:0;left:0;right:0;height:2px;width:0;opacity:1;transition:width .1s,opacity .4s;background-color:#000;z-index:999999}.nuxt-progress.nuxt-progress-notransition{transition:none}.nuxt-progress-failed{background-color:red}[data-v-b74b5d8a]{box-sizing:border-box;font-family:sans-serif}body[data-v-b74b5d8a],html[data-v-b74b5d8a]{height:100%;margin:0;padding:0}.app[data-v-b74b5d8a]{display:flex;flex-direction:column;justify-content:center;width:100%;max-width:600px;min-height:80vh;margin:auto;text-align:center;border:10px solid transparent}.app--error[data-v-b74b5d8a]{border:10px solid #d63031}.app--correct[data-v-b74b5d8a]{border:10px solid #00b894}.app__title[data-v-b74b5d8a]{margin:0 20px;font-size:1.8rem}.app__label[data-v-b74b5d8a]{margin:0}.app__playmat[data-v-b74b5d8a]{display:flex;flex-direction:column;align-items:center}.app__cards[data-v-b74b5d8a]{display:flex;justify-content:space-evenly}.app__card[data-v-b74b5d8a]{width:75px;height:100px;margin:5px;background-color:#eee;border:1px solid #aaa;border-radius:5px}.app__correction[data-v-b74b5d8a]{color:transparent}.app__correction--show[data-v-b74b5d8a]{color:#000}.app__actions[data-v-b74b5d8a]{margin-top:20px}.app__button[data-v-b74b5d8a]{width:75px;height:75px;margin:5px;padding:0;font-size:1rem;text-align:center;border:0;border-radius:50%;box-shadow:inset 2px 2px 2px hsla(0,0%,100%,.2),inset -2px -2px 2px rgba(0,0,0,.2);-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.app__button--split[data-v-b74b5d8a]{background-color:#ffeaa7}.app__button--hit[data-v-b74b5d8a]{background-color:#55efc4}.app__button--double[data-v-b74b5d8a]{background-color:#74b9ff}.app__button--stay[data-v-b74b5d8a]{background-color:#ff7675}.app__button--help[data-v-b74b5d8a]{align-self:flex-end;margin-bottom:20px;color:grey;font-size:2rem;background-color:#fff;border:3px solid grey}.app__button[data-v-b74b5d8a]:focus,.app__button[data-v-b74b5d8a]:hover{cursor:pointer}[data-v-2b7cd624]{box-sizing:border-box;font-family:sans-serif}body[data-v-2b7cd624],html[data-v-2b7cd624]{height:100%;margin:0;padding:0}.help[data-v-2b7cd624]{position:absolute;top:0;left:50vw;width:300px;padding:20px;background-color:#fff;border:1px solid grey;transform:translateX(-50%)}.help__table[data-v-2b7cd624]{border:none}.help__cell[data-v-2b7cd624]{width:20px;background-color:hsla(0,0%,100%,.8)}.help__cell--head[data-v-2b7cd624]{white-space:nowrap}.help__cell--partager[data-v-2b7cd624]{background-color:#ffeaa7}.help__cell--tirer[data-v-2b7cd624]{background-color:#55efc4}.help__cell--doubler[data-v-2b7cd624]{background-color:#74b9ff}.help__cell--rester[data-v-2b7cd624]{background-color:#ff7675}.icon[data-v-1240c28b]{width:75px;height:100px}</style>
+  </head>
+  <body data-n-head="">
+    <div data-server-rendered="true" id="__nuxt"><!----><div id="__layout"><div class="app" data-v-b74b5d8a><button class="app__button app__button--help" data-v-b74b5d8a>
+    ?
+  </button> <div class="help" style="display:none" data-v-2b7cd624 data-v-b74b5d8a><table cellspacing="0" cellpadding="0" class="help__table" data-v-2b7cd624><tbody data-v-2b7cd624><tr data-v-2b7cd624></tr> <tr data-v-2b7cd624><th scope="row" class="help__cell--head" data-v-2b7cd624>
+          17-21
+        </th> <td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td></tr><tr data-v-2b7cd624><th scope="row" class="help__cell--head" data-v-2b7cd624>
+          13-16
+        </th> <td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td></tr><tr data-v-2b7cd624><th scope="row" class="help__cell--head" data-v-2b7cd624>
+          12
+        </th> <td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td></tr><tr data-v-2b7cd624><th scope="row" class="help__cell--head" data-v-2b7cd624>
+          10-11
+        </th> <td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td></tr><tr data-v-2b7cd624><th scope="row" class="help__cell--head" data-v-2b7cd624>
+          9
+        </th> <td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td></tr><tr data-v-2b7cd624><th scope="row" class="help__cell--head" data-v-2b7cd624>
+          5-8
+        </th> <td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td></tr></tbody><tbody data-v-2b7cd624><tr data-v-2b7cd624></tr> <tr data-v-2b7cd624><th scope="row" class="help__cell--head" data-v-2b7cd624>
+          AA
+        </th> <td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td></tr><tr data-v-2b7cd624><th scope="row" class="help__cell--head" data-v-2b7cd624>
+          1010
+        </th> <td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td></tr><tr data-v-2b7cd624><th scope="row" class="help__cell--head" data-v-2b7cd624>
+          99
+        </th> <td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td></tr><tr data-v-2b7cd624><th scope="row" class="help__cell--head" data-v-2b7cd624>
+          88
+        </th> <td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td></tr><tr data-v-2b7cd624><th scope="row" class="help__cell--head" data-v-2b7cd624>
+          77
+        </th> <td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td></tr><tr data-v-2b7cd624><th scope="row" class="help__cell--head" data-v-2b7cd624>
+          66
+        </th> <td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td></tr><tr data-v-2b7cd624><th scope="row" class="help__cell--head" data-v-2b7cd624>
+          55
+        </th> <td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td></tr><tr data-v-2b7cd624><th scope="row" class="help__cell--head" data-v-2b7cd624>
+          44
+        </th> <td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td></tr><tr data-v-2b7cd624><th scope="row" class="help__cell--head" data-v-2b7cd624>
+          22-33
+        </th> <td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--partager" data-v-2b7cd624>
+          P
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td></tr></tbody><tbody data-v-2b7cd624><tr data-v-2b7cd624></tr> <tr data-v-2b7cd624><th scope="row" class="help__cell--head" data-v-2b7cd624>
+          A8-A10
+        </th> <td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td></tr><tr data-v-2b7cd624><th scope="row" class="help__cell--head" data-v-2b7cd624>
+          A7
+        </th> <td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--rester" data-v-2b7cd624>
+          R
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td></tr><tr data-v-2b7cd624><th scope="row" class="help__cell--head" data-v-2b7cd624>
+          A6
+        </th> <td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td></tr><tr data-v-2b7cd624><th scope="row" class="help__cell--head" data-v-2b7cd624>
+          A4-A5
+        </th> <td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td></tr><tr data-v-2b7cd624><th scope="row" class="help__cell--head" data-v-2b7cd624>
+          A2-A3
+        </th> <td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--doubler" data-v-2b7cd624>
+          D
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td><td class="help__cell help__cell--tirer" data-v-2b7cd624>
+          T
+        </td></tr></tbody></table></div> <div class="app__playmat" data-v-b74b5d8a><p class="app__label" data-v-b74b5d8a>
+      Carte du Croupier
+    </p> <svg version="1.0" viewBox="0 0 740 1050" xmlns="http://www.w3.org/2000/svg" class="app__card app__card--dealer icon" data-v-1240c28b data-v-1240c28b data-v-b74b5d8a><path d="M74.2 89.35q10 2.2 16 9.1 5.8 6.9 5.8 17 0 16-11 24t-30 8.5q-6.6 0-14-1.3-7-1.3-14-3.9v-14q5.9 3.4 13 5.2 7 1.8 15 1.8 13 0 20-5.3t7-15q0-9.3-6.5-14-6.5-5.3-18-5.3h-12v-12h13q10 0 16-4.1 5.6-4.2 5.6-12 0-8.1-5.8-12-5.7-4.4-16-4.4-5.8 0-13 1.3-6.7 1.3-15 3.9v-13q8.1-2.2 15-3.4 7.1-1.1 13-1.1 16 0 26 7.4 9.4 7.3 9.4 20 0 8.7-5 15-5 6-14 8.3zm-34 92q14 0 22 17 3 6.5 3.1 10h.21q2.5-11 8.9-19 7.6-7.6 17-7.6 15 0 24 16 2.2 5.8 2.2 11 0 18-15 34l-37 45h-.42l-40-48q-12-14-12-30 0-15 14-24 5.9-3.2 12-3.2zm633 775q-10-2.2-16-9.1-5.8-6.9-5.8-17 0-16 11-24t30-8.5q6.6 0 14 1.3 7 1.3 14 3.9v14q-5.9-3.4-13-5.2-7-1.8-15-1.8-13 0-20 5.3t-7 15q0 9.3 6.5 14 6.5 5.3 18 5.3h12v12h-13q-10 0-16 4.1-5.6 4.2-5.6 12 0 8.1 5.8 12 5.7 4.4 16 4.4 5.8 0 13-1.3t15-3.9v13q-8.1 2.2-15 3.4-7.1 1.1-13 1.1-16 0-26-7.4-9.4-7.3-9.4-20 0-8.7 5-15 5-6 14-8.3zm34-92q-14 0-22-17-3-6.5-3.1-10h-.21q-2.5 11-8.9 19-7.6 7.6-17 7.6-15 0-24-16-2.2-5.8-2.2-11 0-18 15-34l37-45h.42l40 48q12 14 12 30 0 15-14 24-5.9 3.2-12 3.2zm-333-563q-3.8-14-11-27-7-13-27-39-15-20-18-25-5.6-8.5-8.2-16-2.4-7.2-2.4-15 0-14 9-23 9-9.2 22-9.2t23 9.5q7.4 7.1 12 21 4-14 11-21 10-9.8 23-9.8t22 9.2q9.2 9 9.2 22 0 11-5.4 23t-21 31q-20 25-29 42-7.2 13-11 27zm0 443q-3.8 14-11 27-7 13-27 39-15 20-18 25-5.6 8.5-8.2 16-2.4 7.2-2.4 15 0 14 9 23 9 9.2 22 9.2t23-9.5q7.4-7.1 12-21 4 14 11 21 10 9.8 23 9.8t22-9.2q9.2-9 9.2-22 0-11-5.4-23t-21-31q-20-25-29-42-7.2-13-11-27zm0-143q-3.8-14-11-27-7-13-27-39-15-20-18-25-5.6-8.5-8.2-16-2.4-7.2-2.4-15 0-14 9-23 9-9.2 22-9.2t23 9.5q7.4 7.1 12 21 4-14 11-21 10-9.8 23-9.8t22 9.2q9.2 9 9.2 22 0 11-5.4 23t-21 31q-20 25-29 42-7.2 13-11 27z" fill="red" data-v-1240c28b data-v-1240c28b></path></svg> <p class="app__correction" data-v-b74b5d8a><span data-v-b74b5d8a>
+        ❌ Bonne réponse : <b data-v-b74b5d8a>Doubler</b></span></p> <div class="app__cards" data-v-b74b5d8a><svg version="1.0" viewBox="0 0 740 1050" xmlns="http://www.w3.org/2000/svg" class="app__card app__card--player icon" data-v-1240c28b data-v-1240c28b data-v-b74b5d8a><path d="M65.2 55.35l-19 52h39zm-8-14h16l40 105h-15l-9.6-27h-47l-9.6 27H17zm-13 140q14 0 22 17 3 6.5 3.1 10h.21q2.5-11 8.9-19 7.6-7.6 17-7.6 15 0 24 16 2.2 5.8 2.2 11 0 18-15 34l-37 45h-.42l-40-48q-12-14-12-30 0-15 14-24 5.9-3.2 12-3.2zm638 806l19-52h-39zm8 14h-16l-40-105h15l9.6 27h47l9.6-27h15zm13-137q-14 0-22-17-3-6.5-3.1-10h-.21q-2.5 11-8.9 19-7.6 7.6-17 7.6-15 0-24-16-2.2-5.8-2.2-11 0-18 15-34l37-45h.42l40 48q12 14 12 30 0 15-14 24-5.9 3.2-12 3.2zm-329-185q-7.6-29-22-54-14-25-54-79-30-39-36-50-11-17-16-31-4.9-14-4.9-29 0-27 18-45t45-18q27 0 47 19 15 14 24 42 8.1-28 23-42 20-20 47-20 26 0 45 18 18 18 18 43 0 22-11 46t-42 62q-40 51-58 83-14 26-22 54z" fill="red" data-v-1240c28b data-v-1240c28b></path></svg><svg version="1.0" viewBox="0 0 740 1050" xmlns="http://www.w3.org/2000/svg" class="app__card app__card--player icon" data-v-1240c28b data-v-1240c28b data-v-b74b5d8a><path d="M68.2 88.35q-9.6 0-15 6.5-5.6 6.5-5.6 18 0 11 5.6 18 5.6 6.5 15 6.5t15-6.5q5.6-6.6 5.6-18 0-11-5.6-18-5.6-6.5-15-6.5zm28-45v13q-5.3-2.5-11-3.9-5.4-1.3-11-1.3-14 0-22 9.5-7.4 9.5-8.4 29 4.1-6.1 10-9.4 6.3-3.3 14-3.3 16 0 25 9.6 9.2 9.6 9.2 26 0 16-9.6 26-9.6 9.8-25 9.8-18 0-28-14-9.6-14-9.6-40 0-25 12-40t32-15q5.3 0 11 1.1 5.5 1.1 11 3.2zm-30 138q15 0 22 16 .91 3.7 1.1 7.6 0 8.2-8.4 19l-4.2 4.2h.21q5.2-2 11-2h1.3q17 0 23 14 1.6 4.6 1.6 8.9 0 14-15 22-2.8.84-7.8 1.3-17 0-24-19h-.21v.63q0 24 5.8 32v.42h-15l-.42-.42q6-9 6-32v-.21h-.21q-7 19-24 19-13 0-21-14-1.8-4.8-1.8-8.9 0-16 17-22 4.6-.84 8.2-.84H42q6 0 12 2h.21v-.21q-5.9-5-7.9-9.8-4.2-7.7-4.2-13v-.98q0-14 15-21 5-1.3 7.7-1.3zm614 782q9.6 0 15-6.5 5.6-6.5 5.6-18 0-11-5.6-18-5.6-6.5-15-6.5t-15 6.5q-5.6 6.6-5.6 18 0 11 5.6 18 5.6 6.5 15 6.5zm-28 45v-13q5.3 2.5 11 3.9 5.4 1.3 11 1.3 14 0 22-9.5 7.4-9.5 8.4-29-4.1 6.1-10 9.4-6.3 3.3-14 3.3-16 0-25-9.6-9.2-9.6-9.2-26 0-16 9.6-26 9.6-9.8 25-9.8 18 0 28 14 9.6 14 9.6 40 0 25-12 40t-32 15q-5.3 0-11-1.1-5.5-1.1-11-3.2zm31-138q-15 0-22-16-.91-3.7-1.1-7.6 0-8.2 8.4-19l4.2-4.2h-.21q-5.2 2-11 2h-1.3q-17 0-23-14-1.6-4.6-1.6-8.9 0-14 15-22 2.8-.84 7.8-1.3 17 0 24 19h.21v-.63q0-24-5.8-32v-.42h15l.42.42q-6 9-6 32v.21h.21q7-19 24-19 13 0 21 14 1.8 4.8 1.8 8.9 0 16-17 22-4.6.84-8.2.84h-.63q-6 0-12-2h-.21v.21q5.9 5 7.9 9.8 4.2 7.7 4.2 13v.98q0 14-15 21-5 1.3-7.7 1.3zm-397-572h-104l.98-4.2q20-4.3 27-8.4 9.9-6.2 16-18 6.3-12 6.3-26 0-2-.12-5.6-7.4 15-18 22-11 7-22 7-14 0-24-9.9-9.9-9.9-9.9-24 0-14 9-24 9-9.8 21-9.8 7.3 0 20 6.2-5.1-8.5-6.7-13-1.5-4.4-1.5-9.4 0-14 9.6-24 9.6-9.6 24-9.6 14 0 24 9.6 9.9 9.6 9.9 23 0 11-8.4 23 10-4.9 12-5.5 3.3-.98 7.4-.98 12 0 21 9.6 9 9.5 9 24 0 15-9.9 25-9.8 9.9-24 9.9-7.7 0-16-3.7-8.1-3.8-14-10-4.3-4.5-11-15 .49 19 5.9 31 5.5 11 17 19 7.6 5 27 8.8zm0 449h-104l.98 4.2q20 4.3 27 8.4 9.9 6.2 16 18 6.3 12 6.3 26 0 2-.12 5.6-7.4-15-18-22-11-7-22-7-14 0-24 9.9-9.9 9.9-9.9 24 0 14 9 24 9 9.8 21 9.8 7.3 0 20-6.2-5.1 8.5-6.7 13-1.5 4.4-1.5 9.4 0 14 9.6 24 9.6 9.6 24 9.6 14 0 24-9.6 9.9-9.6 9.9-23 0-11-8.4-23 10 4.9 12 5.5 3.3.98 7.4.98 12 0 21-9.6 9-9.5 9-24 0-15-9.9-25-9.8-9.9-24-9.9-7.7 0-16 3.7-8.1 3.8-14 10-4.3 4.5-11 15 .49-19 5.9-31 5.5-11 17-19 7.6-5 27-8.8zm0-149h-104l.98-4.2q20-4.3 27-8.4 9.9-6.2 16-18 6.3-12 6.3-26 0-2-.12-5.6-7.4 15-18 22-11 7-22 7-14 0-24-9.9-9.9-9.9-9.9-24 0-14 9-24 9-9.8 21-9.8 7.3 0 20 6.2-5.1-8.5-6.7-13-1.5-4.4-1.5-9.4 0-14 9.6-24 9.6-9.6 24-9.6 14 0 24 9.6 9.9 9.6 9.9 23 0 11-8.4 23 10-4.9 12-5.5 3.3-.98 7.4-.98 12 0 21 9.6 9 9.5 9 24 0 15-9.9 25-9.8 9.9-24 9.9-7.7 0-16-3.7-8.1-3.8-14-10-4.3-4.5-11-15 .49 19 5.9 31 5.5 11 17 19 7.6 5 27 8.8zm280-300h-104l.98-4.2q20-4.3 27-8.4 9.9-6.2 16-18 6.3-12 6.3-26 0-2-.12-5.6-7.4 15-18 22-11 7-22 7-14 0-24-9.9-9.9-9.9-9.9-24 0-14 9-24 9-9.8 21-9.8 7.3 0 20 6.2-5.1-8.5-6.7-13-1.5-4.4-1.5-9.4 0-14 9.6-24 9.6-9.6 24-9.6 14 0 24 9.6 9.9 9.6 9.9 23 0 11-8.4 23 10-4.9 12-5.5 3.3-.98 7.4-.98 12 0 21 9.6 9 9.5 9 24 0 15-9.9 25-9.8 9.9-24 9.9-7.7 0-16-3.7-8.1-3.8-14-10-4.3-4.5-11-15 .49 19 5.9 31 5.5 11 17 19 7.6 5 27 8.8zm0 449h-104l.98 4.2q20 4.3 27 8.4 9.9 6.2 16 18 6.3 12 6.3 26 0 2-.12 5.6-7.4-15-18-22-11-7-22-7-14 0-24 9.9-9.9 9.9-9.9 24 0 14 9 24 9 9.8 21 9.8 7.3 0 20-6.2-5.1 8.5-6.7 13-1.5 4.4-1.5 9.4 0 14 9.6 24 9.6 9.6 24 9.6 14 0 24-9.6 9.9-9.6 9.9-23 0-11-8.4-23 10 4.9 12 5.5 3.3.98 7.4.98 12 0 21-9.6 9-9.5 9-24 0-15-9.9-25-9.8-9.9-24-9.9-7.7 0-16 3.7-8.1 3.8-14 10-4.3 4.5-11 15 .49-19 5.9-31 5.5-11 17-19 7.6-5 27-8.8zm0-149h-104l.98-4.2q20-4.3 27-8.4 9.9-6.2 16-18 6.3-12 6.3-26 0-2-.12-5.6-7.4 15-18 22-11 7-22 7-14 0-24-9.9-9.9-9.9-9.9-24 0-14 9-24 9-9.8 21-9.8 7.3 0 20 6.2-5.1-8.5-6.7-13-1.5-4.4-1.5-9.4 0-14 9.6-24 9.6-9.6 24-9.6 14 0 24 9.6 9.9 9.6 9.9 23 0 11-8.4 23 10-4.9 12-5.5 3.3-.98 7.4-.98 12 0 21 9.6 9 9.5 9 24 0 15-9.9 25-9.8 9.9-24 9.9-7.7 0-16-3.7-8.1-3.8-14-10-4.3-4.5-11-15 .49 19 5.9 31 5.5 11 17 19 7.6 5 27 8.8z" data-v-1240c28b data-v-1240c28b></path></svg></div> <p class="app__label" data-v-b74b5d8a>
+      Vos cartes
+    </p></div> <div class="app__actions" data-v-b74b5d8a><button type="button" class="app__button app__button--split" data-v-b74b5d8a>
+      Partager
+    </button><button type="button" class="app__button app__button--hit" data-v-b74b5d8a>
+      Tirer
+    </button><button type="button" class="app__button app__button--double" data-v-b74b5d8a>
+      Doubler
+    </button><button type="button" class="app__button app__button--stay" data-v-b74b5d8a>
+      Rester
+    </button></div></div></div></div><script>window.__NUXT__={layout:"default",data:[{}],error:null,serverRendered:!0}</script><script src="/blackjack/_nuxt/3081c55dbbb60853997c.js" defer></script><script src="/blackjack/_nuxt/262126b33415c23a097a.js" defer></script><script src="/blackjack/_nuxt/b2249a4f9045373c5774.js" defer></script><script src="/blackjack/_nuxt/7c4d35a33e5f583ae0a3.js" defer></script>
+  </body>
+</html>

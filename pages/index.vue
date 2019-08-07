@@ -12,35 +12,38 @@
       v-show="showHelp"
       :tables="tables" />
 
-    <no-ssr>
-      <div class="app__playmat">
-        <p class="app__label">
-          Carte du Croupier
-        </p>
+    <div class="app__playmat">
+      <p class="app__label">
+        Carte du Croupier
+      </p>
 
+      <Icon
+        class="app__card app__card--dealer"
+        :icon="dealerSvgCard" />
+
+      <p
+        class="app__correction"
+        :class="hideCorrection || 'app__correction--show'">
+        <span v-if="this.answer">
+          ✅ Correct
+        </span>
+        <span v-else>
+          ❌ Bonne réponse : <b>{{ dealerCard.action }}</b>
+        </span>
+      </p>
+
+      <div class="app__cards">
         <Icon
-          class="app__card app__card--dealer"
-          :icon="dealerSvgCard" />
-
-        <div class="app__cards">
-          <Icon
-            v-for="(card, index) in playerSvgCards"
-            :key="index"
-            class="app__card app__card--player"
-            :icon="card" />
-        </div>
-
-        <p class="app__label">
-          Vos cartes
-        </p>
+          v-for="(card, index) in playerSvgCards"
+          :key="index"
+          class="app__card app__card--player"
+          :icon="card" />
       </div>
-    </no-ssr>
 
-    <p
-      class="app__correction"
-      :class="hideCorrection || 'app__correction--show'">
-      Action à prendre : <b>{{ dealerCard.action }}</b>
-    </p>
+      <p class="app__label">
+        Vos cartes
+      </p>
+    </div>
 
     <div class="app__actions">
       <button
@@ -129,7 +132,7 @@
 
       verify(action) {
         this.answer       = actions[action] === this.dealerCard.action;
-        this.hideCorrection = this.answer;
+        this.hideCorrection = false;
       },
 
       getRandomInt(max) {
@@ -209,7 +212,7 @@
   justify-content : center;
   width           : 100%;
   max-width       : 600px;
-  height          : 100vh;
+  min-height      : 80vh;
   margin          : auto;
   text-align      : center;
   border          : $border-width transparent solid;
@@ -240,7 +243,6 @@
   &__cards {
     display         : flex;
     justify-content : space-evenly;
-    margin-top      : 20px;
   }
 
   &__card {
@@ -258,6 +260,10 @@
     &--show {
       color : black;
     }
+  }
+
+  &__actions {
+    margin-top : 20px;
   }
 
   &__button {

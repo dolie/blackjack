@@ -1,12 +1,12 @@
 <template>
   <div class="help">
-    <table>
+    <table
+      class="help__table"
+      cellspacing="0"
+      cellpadding="0">
       <tbody
         v-for="(table, tableIndex) in tables"
-        :key="tableIndex"
-        class="help__table"
-        cellspacing="0"
-        cellpadding="0">
+        :key="tableIndex">
         <tr>
           <th
             v-for="(val, n) in dealerValues"

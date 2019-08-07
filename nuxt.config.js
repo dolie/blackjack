@@ -7,11 +7,17 @@ const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
 export default {
   ...routerBase,
   head : {
-    titleTemplate : '♠️♣️♥️♦️ Blackjack Basic Strategy',
+    titleTemplate : 'Blackjack Basic Strategy',
     meta          : [
       { charset : 'utf-8' },
       { name : 'viewport', content : 'width=device-width, initial-scale=1' },
-      { hid : 'description', name : 'description', content : 'Meta description' }
+      {
+      name    : 'description',
+      content : 'Application d\'apprentissage de la stratégie de base du Blackjack, adaptée pour les casinos français'
+      }
+    ],
+    link : [
+      { rel : 'icon', type : 'image/png', href : 'blackjack.png' }
     ]
   },
   css : [

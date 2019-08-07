@@ -1,12 +1,12 @@
 <template>
   <div class="help">
-    <table
-      v-for="(table, tableIndex) in tables"
-      :key="tableIndex"
-      class="help__table"
-      cellspacing="0"
-      cellpadding="0">
-      <thead>
+    <table>
+      <tbody
+        v-for="(table, tableIndex) in tables"
+        :key="tableIndex"
+        class="help__table"
+        cellspacing="0"
+        cellpadding="0">
         <tr>
           <th
             v-for="(val, n) in dealerValues"
@@ -16,23 +16,21 @@
             {{ val.toString().replace('11', 'A') }}
           </th>
         </tr>
-      </thead>
 
-      <tbody>
         <tr
           v-for="(group, groupIndex) in table"
           :key="groupIndex">
           <th
             scope="row"
             class="help__cell--head">
-            {{ group.values[0].toString().replace('11', 'A') }}
+            {{ group.name }}
           </th>
 
           <td
             v-for="(dealtCards, index) in group.dealer"
             :key="index"
-            :class="`help__action--${dealtCards.action.toLowerCase()}`"
-            class="app__action">
+            :class="`help__cell--${dealtCards.action.toLowerCase()}`"
+            class="help__cell">
             {{ dealtCards.action[0] }}
           </td>
         </tr>
@@ -81,25 +79,23 @@
   position         : absolute;
   top              : 0;
   left             : 50vw;
+  width            : 300px;
   padding          : 20px;
-  width            : 250px;
   background-color : white;
   border           : 1px solid grey;
   transform        : translateX(-50%);
-
-  &__cell {
-    &--head {
-      width : $cell-width;
-    }
-  }
 
   &__table {
     border : none;
   }
 
-  &__action {
+  &__cell {
     width            : $cell-width;
     background-color : rgba(255, 255, 255, .8);
+
+    &--head {
+      white-space: nowrap;
+    }
 
     &--partager {
       background-color : $split;

@@ -7,6 +7,7 @@ const P = actions.SPLIT; // Partager
 
 export const tot = [
   {
+    'name'   : '17-21',
     'values' : [17, 18, 19, 20, 21],
     'dealer' : [
       { 'value' : 2, 'action' : R },
@@ -21,6 +22,7 @@ export const tot = [
       { 'value' : 11, 'action' : R }
     ]
   }, {
+    'name'   : '13-16',
     'values' : [13, 14, 15, 16],
     'dealer' : [
       { 'value' : 2, 'action' : R },
@@ -35,6 +37,7 @@ export const tot = [
       { 'value' : 11, 'action' : T }
     ]
   }, {
+    'name'   : '12',
     'values' : [12],
     'dealer' : [
       { 'value' : 2, 'action' : T },
@@ -49,6 +52,7 @@ export const tot = [
       { 'value' : 11, 'action' : T }
     ]
   }, {
+    'name'   : '10-11',
     'values' : [10, 11],
     'dealer' : [
       { 'value' : 2, 'action' : D },
@@ -63,6 +67,7 @@ export const tot = [
       { 'value' : 11, 'action' : T }
     ]
   }, {
+    'name'   : '9',
     'values' : [9],
     'dealer' : [
       { 'value' : 2, 'action' : T },
@@ -77,6 +82,7 @@ export const tot = [
       { 'value' : 11, 'action' : T }
     ]
   }, {
+    'name'   : '5-8',
     'values' : [5, 6, 7, 8],
     'dealer' : [
       { 'value' : 2, 'action' : T },
@@ -95,6 +101,7 @@ export const tot = [
 
 export const pairs = [
   {
+    'name'   : 'AA',
     'values' : [11],
     'dealer' : [
       { 'value' : 2, 'action' : P },
@@ -109,6 +116,7 @@ export const pairs = [
       { 'value' : 11, 'action' : T }
     ]
   }, {
+    'name'   : '1010',
     'values' : [10],
     'dealer' : [
       { 'value' : 2, 'action' : R },
@@ -123,6 +131,7 @@ export const pairs = [
       { 'value' : 11, 'action' : R }
     ]
   }, {
+    'name'   : '99',
     'values' : [9],
     'dealer' : [
       { 'value' : 2, 'action' : P },
@@ -137,6 +146,7 @@ export const pairs = [
       { 'value' : 11, 'action' : R }
     ]
   }, {
+    'name'   : '88',
     'values' : [8],
     'dealer' : [
       { 'value' : 2, 'action' : P },
@@ -151,6 +161,7 @@ export const pairs = [
       { 'value' : 11, 'action' : T }
     ]
   }, {
+    'name'   : '77',
     'values' : [7],
     'dealer' : [
       { 'value' : 2, 'action' : P },
@@ -165,6 +176,7 @@ export const pairs = [
       { 'value' : 11, 'action' : T }
     ]
   }, {
+    'name'   : '66',
     'values' : [6],
     'dealer' : [
       { 'value' : 2, 'action' : P },
@@ -179,6 +191,7 @@ export const pairs = [
       { 'value' : 11, 'action' : T }
     ]
   }, {
+    'name'   : '55',
     'values' : [5],
     'dealer' : [
       { 'value' : 2, 'action' : D },
@@ -193,6 +206,7 @@ export const pairs = [
       { 'value' : 11, 'action' : T }
     ]
   }, {
+    'name'   : '44',
     'values' : [4],
     'dealer' : [
       { 'value' : 2, 'action' : T },
@@ -207,7 +221,8 @@ export const pairs = [
       { 'value' : 11, 'action' : T }
     ]
   }, {
-    'values' : [3, 2],
+    'name'   : '22-33',
+    'values' : [2, 3],
     'dealer' : [
       { 'value' : 2, 'action' : P },
       { 'value' : 3, 'action' : P },
@@ -225,6 +240,7 @@ export const pairs = [
 
 export const aces = [
   {
+    'name'   : 'A8-A10',
     'values' : [8, 9, 10],
     'dealer' : [
       { 'value' : 2, 'action' : R },
@@ -239,6 +255,7 @@ export const aces = [
       { 'value' : 11, 'action' : R }
     ]
   }, {
+    'name'   : 'A7',
     'values' : [7],
     'dealer' : [
       { 'value' : 2, 'action' : R },
@@ -253,6 +270,7 @@ export const aces = [
       { 'value' : 11, 'action' : T }
     ]
   }, {
+    'name'   : 'A6',
     'values' : [6],
     'dealer' : [
       { 'value' : 2, 'action' : T },
@@ -267,6 +285,7 @@ export const aces = [
       { 'value' : 11, 'action' : T }
     ]
   }, {
+    'name'   : 'A4-A5',
     'values' : [4, 5],
     'dealer' : [
       { 'value' : 2, 'action' : T },
@@ -281,6 +300,7 @@ export const aces = [
       { 'value' : 11, 'action' : T }
     ]
   }, {
+    'name'   : 'A2-A3',
     'values' : [2, 3],
     'dealer' : [
       { 'value' : 2, 'action' : T },
